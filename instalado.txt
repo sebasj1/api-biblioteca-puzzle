@@ -1,0 +1,13 @@
+npm i express apollo-server-express mysql typeorm reflect-metadata type-graphql instalar las dependencias
+npm i -D typescript ts-node @types/express @types/node   Instalar dependencias solo para desarrollo,no se agregan una vez compilado
+npx tsc --init   iniciar archivo de configuraciones typescript
+
+descomentar  
+rootDir e indicar la raiz
+outDir e indicar donde se almacenara una vez compilado
+experimentalDecorators
+emitDecoratorMetadata
+
+en script 
+"start:dev":nodemon src/main.ts --exec ts-node  inicia nodemon en el archivo raiz y ejecuta ts-node que 
+es la libreria que nos permite ejeutar typescript sin compilarlo
