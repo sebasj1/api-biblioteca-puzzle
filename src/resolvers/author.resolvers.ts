@@ -34,7 +34,7 @@ class AuthorUpdateInput {
 
   @IsString()
   @Field()
-  @Length(3,64)
+  @Length(3, 64)
   fullName!: string
 }
 
@@ -105,7 +105,14 @@ export class AuthorResolver {
   async deleteOneAuthor(
     @Arg('input', () => AuthorInputId) input: AuthorInputId,
   ): Promise<Boolean> {
-    await this.authorRepository.delete(input.id)
-    return true
+    try {
+      const result = await this.authorRepository.delete(input.id)
+      if (result.affected === 0) {
+        throw new Error('author does not exist')
+      }
+      return true
+    } catch (error) {
+      throw error
+    }
   }
 }

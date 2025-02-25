@@ -21,11 +21,13 @@ export class Author {
   @Column()
   fullName!: string
 
-  @Field(()=>[Book],{ nullable: true }) //Porque puede no tener libros
-  @OneToMany(() => Book, (book) => book.author, { nullable: true }) //author 1 -- * book
-  books!: Book[]|null
+  @Field(() => [Book], { nullable: true }) //Porque puede no tener libros
+  @OneToMany(() => Book, (book) => book.author, {
+    nullable: true
+  }) //author 1 -- * book
+  books!: Book[] | null
 
   @Field(() => String)
   @CreateDateColumn({ type: 'timestamp' })
   createdAt!: string
-} 
+}

@@ -65,7 +65,6 @@ export class BookResolver {
     @Ctx() context: IContext,
   ) {
     try {
-      console.log(context)
       const author: Author | undefined = await this.authorRepository.findOne(
         input.author,
       )
@@ -138,7 +137,10 @@ export class BookResolver {
     @Arg('input', () => BookInputId) input: BookInputId,
   ): Promise<Boolean> {
     try {
-      await this.bookRepository.delete(input.id)
+      const result=await this.bookRepository.delete(input.id)
+      if(result.affected===0){
+        throw new Error('Book does not exist')
+      }
       return true
     } catch (e) {
       throw e

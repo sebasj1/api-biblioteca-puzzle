@@ -20,8 +20,10 @@ export class Book {
   @Column()
   title!: string
 
-  @Field(() => Author) 
-  @ManyToOne(() => Author, (author) => author.books) //relacion con author,author 1--*book
+  @Field(() => Author)
+  @ManyToOne(() => Author, (author) => author.books, {
+    onDelete: 'CASCADE',
+  }) //relacion con author,author 1--*book
   author!: Author
 
   @Field()
